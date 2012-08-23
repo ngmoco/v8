@@ -21,21 +21,27 @@ else
     make clean
 
     # Copy over the include files
+    echo "Copy includes"
     cp -R include $OUTPUT_DIR
 
     # build the production version of v8
+    echo "Building Release no debug"
     make android_arm.release -j8 debuggersupport=off
     mkdir $OUTPUT_DIR/prod
     cp -R out/android_arm.release/obj.target/tools/gyp/*.a $OUTPUT_DIR/prod
     
     make clean
     # build the release version of V8
+    echo "Building Release"
     make android_arm.release -j8 
+    mkdir $OUTPUT_DIR/rel
     cp -R out/android_arm.release/obj.target/tools/gyp/*.a $OUTPUT_DIR/rel
 
     make clean
     # build the debug version
+    echo "Building debug"
     make android_arm.debug -j8
+    mkdir $OUTPUT_DIR/debug
     cp -R out/android_arm.debug/obj.target/tools/gyp/*.a $OUTPUT_DIR/debug
 
     echo "Build Completed"
