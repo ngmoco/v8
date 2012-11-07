@@ -2269,6 +2269,12 @@ DebugCommandProcessor.prototype.scriptsRequest_ = function(request, response) {
     if (idsToInclude && !idsToInclude[scripts[i].id]) {
       continue;
     }
+    if(!scripts[i].name) {
+        continue;
+    }
+    if(scripts[i].name && scripts[i].name.indexOf('/') < 0) {
+        continue;
+    }
     if (filterStr || filterNum) {
       var script = scripts[i];
       var found = false;
