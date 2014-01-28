@@ -29,6 +29,8 @@
 ANDROID_ARCHES = android_ia32 android_arm
 MODES = release debug
 
+NGCORE_ARMV7=1
+
 # Generates all combinations of ANDROID ARCHES and MODES,
 # e.g. "android_ia32.release" or "android_arm.release"
 ANDROID_BUILDS = $(foreach mode,$(MODES), \
@@ -47,7 +49,7 @@ endif
 
 ifeq ($(ARCH), android_arm)
   DEFINES  = target_arch=arm v8_target_arch=arm android_target_arch=arm
-  DEFINES += arm_neon=0 armv7=1
+  DEFINES += arm_neon=0 armv7=$(NGCORE_ARMV7)
   TOOLCHAIN_ARCH = arm-linux-androideabi-4.4.3
 else
   ifeq ($(ARCH), android_ia32)

@@ -162,6 +162,12 @@
               '-mfpu=vfp3',
             ],
           }],
+          ['target_arch=="arm" and armv7==0', {
+            'cflags': [
+              '-march=armv6',
+              '-mfpu=vfp',
+            ],
+          }],
           # NOTE: The stlport header include paths below are specified in
           # cflags rather than include_dirs because they need to come
           # after include_dirs. Think of them like system headers, but
