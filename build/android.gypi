@@ -59,9 +59,6 @@
     'OS': 'android',
     'target_arch': 'arm',
     'v8_target_arch': 'arm',
-    'armv7': 1,
-    'arm_neon': 0,
-    'arm_fpu': 'vfpv3',
   },  # variables
   'target_defaults': {
     'defines': [
@@ -101,9 +98,6 @@
           # Note: This include is in cflags to ensure that it comes after
           # all of the includes.
           '-I<(android_ndk_include)',
-          '-march=armv7-a',
-          '-mtune=cortex-a8',
-          '-mfpu=vfp3',
         ],
         'defines': [
           'ANDROID',
@@ -146,6 +140,19 @@
             'ldflags': [
               '-Wl,-rpath-link=<(android_ndk_lib)',
               '-L<(android_ndk_lib)',
+            ],
+          }],
+          ['armv7==1', {
+            'cflags': [
+              '-march=armv7-a',
+              '-mtune=cortex-a8',
+              '-mfpu=vfp3',
+            ],
+          }],
+          ['armv7==0', {
+            'cflags': [
+              '-march=armv6',
+              '-mfpu=vfp',
             ],
           }],
           # NOTE: The stlport header include paths below are specified in

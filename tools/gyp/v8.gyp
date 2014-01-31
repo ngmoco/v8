@@ -649,10 +649,12 @@
                 ],
               }
             ],
+			['armv7==1', {
+              'defines': [
+                'CAN_USE_VFP_INSTRUCTIONS',
+              ],
+			}],
             ['OS=="android"', {
-                'defines': [
-                  'CAN_USE_VFP_INSTRUCTIONS',
-                ],
                 'sources': [
                   '../../src/platform-posix.cc',
                 ],
