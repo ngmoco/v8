@@ -6,6 +6,9 @@ def show_usage_and_quit
   puts "Usage: ngcore_build_v8 path/to/android-ndk-r6b/"
   puts "   the resulting v8 archives will be copied into the package/ subfolder."
   puts "   Note: must use a downloaded ndk from google, the one in submoduels/coreTools does not include static libs for stlport."
+  puts "   Note: download ndk from google: http://dl.google.com/android/ndk/android-ndk-r6b-darwin-x86.tar.bz2"
+  puts "   Note: also satisfy gyp dependencies by typing \"make dependencies\" before running this script."
+  puts "   Note: if all artifacts are built, then (manually) copy them from package/ folder to respective locations in libs/ folder."
   exit 1
 end
 
@@ -57,7 +60,7 @@ clean_build_v8 "android_arm.release", "NGCORE_ARMV7=0 armv7=0 vfp3=off", "#{OUTP
 clean_build_v8 "android_arm.release", "debuggersupport=1", "#{OUTPUT_DIR}/armv7-rel"
 clean_build_v8 "android_arm.release", "debuggersupport=1 NGCORE_ARMV7=0 armv7=0 vfp3=off", "#{OUTPUT_DIR}/armv6-rel"
 
-# NOTE: these builds are currently disabled they lock up the clang compiler on the host machine (used to build the tools neccessary to build a snapshot)
+# NOTE: these builds are currently disabled they lock up the clang compiler on the host machine (used to build the tools necessary to build a snapshot)
 
 # debug
 #clean_build_v8 "android_arm.debug", "want_separate_host_toolset=0", "#{OUTPUT_DIR}/armv7-debug"
