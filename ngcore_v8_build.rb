@@ -35,7 +35,11 @@ def clean_build_v8 make_target, additional_make_options, output_dir
   sh "make clean"
   sh "make #{make_target} -j8 #{additional_make_options}"
   sh "mkdir #{output_dir}"
-  sh "cp -R out/#{make_target}/obj.target/tools/gyp/*.a #{output_dir}"
+  if make_target == 'ia32.release'
+    sh "cp -R out/#{make_target}/*.a #{output_dir}"
+  else
+    sh "cp -R out/#{make_target}/obj.target/tools/gyp/*.a #{output_dir}"
+  end
   puts "DONE"
 end
 
@@ -59,6 +63,9 @@ clean_build_v8 "android_arm.release", "NGCORE_ARMV7=0 armv7=0 vfp3=off", "#{OUTP
 # release with debugger support
 clean_build_v8 "android_arm.release", "debuggersupport=1", "#{OUTPUT_DIR}/armv7-rel"
 clean_build_v8 "android_arm.release", "debuggersupport=1 NGCORE_ARMV7=0 armv7=0 vfp3=off", "#{OUTPUT_DIR}/armv6-rel"
+
+# ios simulator release with debugger support.
+clean_build_v8 "ia32.release", "debuggersupport=1 werror=no", "#{OUTPUT_DIR}/ia32-rel"
 
 # NOTE: these builds are currently disabled they lock up the clang compiler on the host machine (used to build the tools necessary to build a snapshot)
 
