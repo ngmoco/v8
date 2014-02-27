@@ -65,8 +65,8 @@ clean_build_v8 "android_arm.release", "debuggersupport=1", "#{OUTPUT_DIR}/armv7-
 clean_build_v8 "android_arm.release", "debuggersupport=1 NGCORE_ARMV7=0 armv7=0 vfp3=off", "#{OUTPUT_DIR}/armv6-rel"
 
 # ios simulator release with debugger support.
-clean_build_v8 "ia32.debug", "debuggersupport=1 werror=no", "#{OUTPUT_DIR}/ia32-debug"
-#clean_build_v8 "ia32.release", "debuggersupport=1 werror=no", "#{OUTPUT_DIR}/ia32-rel"
+#clean_build_v8 "ia32.debug", "debuggersupport=1 werror=no", "#{OUTPUT_DIR}/ia32-debug"
+clean_build_v8 "ia32.release", "debuggersupport=1 werror=no", "#{OUTPUT_DIR}/ia32-rel"
 
 # NOTE: these builds are currently disabled they lock up the clang compiler on the host machine (used to build the tools necessary to build a snapshot)
 
